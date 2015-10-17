@@ -1,0 +1,5 @@
+resalloc:
+  build: .
+  container_name: resalloc
+  ports:
+    - 8080:8080
