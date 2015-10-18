@@ -1,8 +1,7 @@
 FROM golang:1.5.1
 WORKDIR /src
 # Application config vars
-ENV PORT=8080 \
-    ROLE=master
+ENV PORT=8080
 # Install application dependencies
 RUN apt-get update && \
     apt-get -y install sqlite3
