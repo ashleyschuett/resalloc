@@ -3,6 +3,25 @@
 	"GoVersion": "go1.5.1",
 	"Deps": [
 		{
+			"ImportPath": "github.com/asaskevich/govalidator",
+			"Comment": "v2-33-g330d28f",
+			"Rev": "330d28f27e5daa21b9656342a919a2262b830027"
+		},
+		{
+			"ImportPath": "github.com/docker/docker/pkg/units",
+			"Comment": "v1.4.1-6986-gbece5b8",
+			"Rev": "bece5b82a89081816bc622d3c3e9178251013636"
+		},
+		{
+			"ImportPath": "github.com/doug-martin/goqu",
+			"Comment": "v3.1.0",
+			"Rev": "d2494e1ed2d60802a700224a68d7d549f8cd07b6"
+		},
+		{
+			"ImportPath": "github.com/jmcvetta/randutil",
+			"Rev": "2bb1b664bcff821e02b2a0644cd29c7e824d54f8"
+		},
+		{
 			"ImportPath": "github.com/julienschmidt/httprouter",
 			"Comment": "v1.1-10-g77a895a",
 			"Rev": "77a895ad01ebc98a4dc95d8355bc825ce80a56f6"
@@ -10,6 +29,23 @@
 		{
 			"ImportPath": "github.com/justinas/alice",
 			"Rev": "82db91fe6d1db4c070fed544cb5d0b5cc08fe276"
+		},
+		{
+			"ImportPath": "github.com/mattn/go-sqlite3",
+			"Comment": "v1.1.0-11-gb808f01",
+			"Rev": "b808f01f660667b1510acf216aa2b9fe7f555ddb"
+		},
+		{
+			"ImportPath": "github.com/samalba/dockerclient",
+			"Rev": "ffec08181228917acac8dde69ce8a922f23a57ff"
+		},
+		{
+			"ImportPath": "golang.org/x/crypto/bcrypt",
+			"Rev": "c8b9e6388ef638d5a8a9d865c634befdc46a6784"
+		},
+		{
+			"ImportPath": "golang.org/x/crypto/blowfish",
+			"Rev": "c8b9e6388ef638d5a8a9d865c634befdc46a6784"
 		}
 	]
 }
