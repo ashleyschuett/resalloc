@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS users (
-  username VARCHAR(40) PRIMARY KEY,
-  salt VARCHAR(40),
-  password VARCHAR(100),
-  account_type VARCHAR(3),
-  activated BOOLEAN
+  username VARCHAR(40) PRIMARY KEY NOT NULL,
+  password VARCHAR(60) NOT NULL,
+  token VARCHAR(50) NOT NULL,
+  account_type VARCHAR(3) NOT NULL,
+  activated TINYINT NOT NULL
 );

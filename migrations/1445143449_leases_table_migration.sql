@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS leases (
+  name VARCHAR(40) PRIMARY KEY NOT NULL,
+  username VARCHAR(40) NOT NULL,
+  machine_name VARCHAR(40) NOT NULL
+);
