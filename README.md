@@ -11,10 +11,23 @@ resource allocation with docker
     - download https://www.docker.com/toolbox and install
     - `docker-machine create default --driver virtualbox`
     - `eval "$(docker-machine env default)"`
+  - Ubuntu 14.04 Setup
+    - `sudo apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D`
+    - `sudo touch /etc/apt/sources.list.d/docker.list`
+    - `sudo bash -c 'echo "deb https://apt.dockerproject.org/repo ubuntu-trusty main" > /etc/apt/sources.list.d/docker.list'`
+    - `sudo apt-get update`
+    - `sudo apt-get -y install docker-engine`
+    - `sudo usermod -aG docker yourusername`
+    - `sudo su - yourusername` or log out and back into your user.
+2. `pip install docker-compose` or `sudo pip install docker-compose` depending how python and pip are installed on your machine.
+3. run `make test` or `sudo make test` if you run into issues with connecting to the docker socket on Ubuntu. This will build your entire environment inside a container and make it available at port 8080.
+4. Configure the client.
+  - OSX
     - `docker-machine ip default`
       - this is the IP that you should place on line 11 for client.py to use.
-2. pip install docker-compose
-3. run `make test`. This will build your entire environment inside a container and make it available at port 8080.
+  - Ubuntu
+    - run `sudo docker ps` and use the IP and PORT that is listed under PORTS
+      - this is the IP that you should place on line 11 for client.py to use.
 4. Initial Setup
   - from the client directory run the following commands
   - `pip install -r requirements.txt`
@@ -24,6 +37,7 @@ resource allocation with docker
   - `python client.py machine create slave ubuntu 52.10.32.82` This uses an EC2 instance that has had the setup.sh script run on it and has an ubuntu user with a public key created from the resalloc.pem private key.
   - `python client.py lease create busybox mylease` Use the resource we created above and give my lease a name.
   - `python client.py ssh mylease` log into the machine that was just created. Type exit to log out of your leased machine.
+    - If the permission of the key has changed run `chmod 600 resources/resalloc.pem`
 
 ##### Building
 
