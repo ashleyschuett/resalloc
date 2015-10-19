@@ -49,6 +49,7 @@ resource allocation with docker
 
 ##### Bad Things
 
+- Some code inside of controller.go is repeated and should be abstracted out into helper functions.
 - Every created user right now is by default activated. I have put an account_type and activated column that could allow for setting an admin account that then has access to approve or reject new user requests.
 - Error messages are not appropriate for end users. Some errors that bubble up are right from a SQL error such as UNIQUE constraint failed.
 - Migrations aren't handled in a great way right now since it's not possible to roll back the database to a previous version.
