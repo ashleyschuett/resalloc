@@ -28,7 +28,8 @@ Once you have made the proper resources available for use to your users you can 
 3. run `make test` or `sudo make test` if you run into issues with connecting to the docker socket on Ubuntu. This will build your entire environment inside a container and make it available at port 8080. It will hang at the end giving you a way to see any stderr or stdout that occurs from commands being run against the server. You can hit Ctrl+C to stop this and the server will keep running.
 4. Create slaves (optional)
   - If you do not want to use the slave machines I have created you can create your own by starting up a ubuntu:14.04 machine that the master has access to.
-  -
+  - add `ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCvvUN6dmF2t1HH3V/cfQyBm7dxVkKfsEwhGeoxT9pTAxLgNO7JcXnjW65w17vprxLpdoiYp+W9FQAEAN8b95F5Z6PPwiksbIVN8fy3G06Tkdi3kb6bFd9/okU/xPIKpIfOl9LuXND5yM6hNPVwQ/SzoZnGzf+tRxNuq/38umjDwLufLPNTq8Ga4NLc+G30puOlu2YB5+CQgcs0WQZsUADtnT0o+Ai64Wme3W5GbtWyoBIMRvEf5mtSjRJOR469HZM7qiqPY5btyXWShallZYSLQBxF/z4tcgOpFxGDaKfYIehpS+zu9rFOpkqjDwgGQLpjw3/pkjnNNiy2TNGihntr resalloc` to the ~/.ssh/autorized_keys file.
+  - run the resources/setup.sh script on the machine.
 4. Initial Setup
   - from the client directory run the following commands
   - `pip install -r requirements.txt`
