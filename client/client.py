@@ -2,6 +2,7 @@
 
 from docopt import docopt
 from inspect import getdoc
+import platform
 import requests
 import json
 import os
@@ -9,7 +10,11 @@ import os
 def main():
     # Change this to whatever IP and PORT you are running
     # the server on. likely localhost for linux.
-    server_ip = "192.168.99.100:8080"
+    # auto detect and try to configure the port to use
+    server_ip = "0.0.0.0"
+    if platform.system() == "Darwin":
+        server_ip = os.popen('docker-machine ip default').read().rstrip()
+    server_ip = server_ip + ":8080"
     command = CompressCommand(server_ip)
     command.run()
 
