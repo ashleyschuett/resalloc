@@ -6,9 +6,24 @@ resource allocation with docker
 ##### Local Development
 
 1. Install docker or docker-machine for mac
-2. Install docker-compose
-3. run `make test`. This will build your entire environment inside a container and launch it for access on port 8080.
-4. 52.10.32.82 serves as a testing server.
+  - OSX Setup
+    - run the following in the terminal you will be using the docker command from
+    - download https://www.docker.com/toolbox and install
+    - `docker-machine create default --driver virtualbox`
+    - `eval "$(docker-machine env default)"`
+    - `docker-machine ip default`
+      - this is the IP that you should place on line 11 for client.py to use.
+2. pip install docker-compose
+3. run `make test`. This will build your entire environment inside a container and make it available at port 8080.
+4. Initial Setup
+  - from the client directory run the following commands
+  - `pip install -r requirements.txt`
+  - `python client.py register yourusername yourpassword` Create a user
+  - `python client.py login yourusername yourpassword` Login with your user to get a token
+  - `python client.py resources create busybox "FROM busybox"` Setups a small linux distro. You can use any valid docker file for the second parameter if you wish [Dockerfiles](https://docs.docker.com/reference/builder/)
+  - `python client.py machine create slave ubuntu 52.10.32.82` This uses an EC2 instance that has had the setup.sh script run on it and has an ubuntu user with a public key created from the resalloc.pem private key.
+  - `python client.py lease create busybox mylease` Use the resource we created above and give my lease a name.
+  - `python client.py ssh mylease` log into the machine that was just created. Type exit to log out of your leased machine.
 
 ##### Building
 
@@ -16,15 +31,18 @@ resource allocation with docker
 2. Install docker-compose via pip
 3. `docker-compose build`
 4. `docker ps` will show you what IP and Port the container is available on. Note when using docker-machine the IP you access it on is actually shown via `docker-machine ip default`.
+5. The remote server needs to have a user setup with a user who's public key was generated from the resalloc.pem and has had resources/setup.sh run on it. 52.10.32.82 has had this setup run on it and can be added using `python client.py machine create slave1 ubuntu 52.10.32.82`. Since the master server only manages leases at least one slave server is required.
 
 ##### Bad Things
 
-- Every created user right now is by default activated. I have put an account_type and activated column that could allow for setting an admin account that then has access to aprove or reject new user requests.
+- Every created user right now is by default activated. I have put an account_type and activated column that could allow for setting an admin account that then has access to approve or reject new user requests.
 - Error messages are not appropriate for end users. Some errors that bubble up are right from a SQL error such as UNIQUE constraint failed.
 - Migrations aren't handled in a great way right now since it's not possible to roll back the database to a previous version.
 - "Files" are stored as strings with \n for line breaks making this a unix specific implementation.
-- The remote docker servers do not have any kind of security.
-- Getting access to your lease actually gives you access to everyones lease. A daemon should be running on the remote system that allows users to have access to only machines that they created. The other option would be on lease creation allowing only an bash file to be passed in that would do everything you need done and having a web interface where they could check on the results.
+- The remote docker servers do not have any kind of security on port 5555.
+- Getting access to your lease actually gives you access to everyones lease. A daemon should be running on the remote system that allows users to have access to only machines that they created.
+- The remote server needs to have a user setup with a user who's public key was generated from the resalloc.pem and has had resources/setup.sh run on it. 52.10.32.82 has had this setup run on it and can be added using `python client.py machine create slave1 ubuntu 52.10.32.82`. Since the master server only manages leases at least one slave server is required to be attached to start created leases.
+
 
 
 #### Helpful

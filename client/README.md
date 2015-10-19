@@ -1,15 +1,11 @@
 # Resalloc Client
 
-#### Bad Things
-- Though be made using setup tools so it could be installed via pip.
-- the ssh connection just makes a call to the os... Sorry windows users. This should use a native python implementation to make it more portable
-
 #### Instalation
 - requires python 2.7
 - pip install -r requirements.txt
 
 #### Configuration
-This client requires you to change the server_ip variable on line 11 of client.py. You can see what IP it can be accessed at via docker ps.
+This client requires you to change the server_ip variable on line 11 of client.py. You can see what IP it can be accessed at via the `docker ps` and the `docker-machine ip default` command for OSX users.
 
 #### Example Commands
 
@@ -32,3 +28,7 @@ This client requires you to change the server_ip variable on line 11 of client.p
   - delete a lease that you are done with
 - python client.py ssh michael
   - ssh into a lease that is available
+
+#### Bad Things
+- This should be made using the python setup tools package so it can be installed via pip.
+- The ssh connection just makes a call to the os... Sorry windows users. This should use a native python implementation to make it more portable
