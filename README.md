@@ -16,7 +16,7 @@ Once you have made the proper resources available for use to your users you can 
     - download https://www.docker.com/toolbox and install
     - `docker-machine create default --driver virtualbox`
     - `eval "$(docker-machine env default)"`
-  - Ubuntu 14.04 Setup
+  - Ubuntu 14.04 Setup (resources/setup.sh without the last two lines)
     - `sudo apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D`
     - `sudo touch /etc/apt/sources.list.d/docker.list`
     - `sudo bash -c 'echo "deb https://apt.dockerproject.org/repo ubuntu-trusty main" > /etc/apt/sources.list.d/docker.list'`
