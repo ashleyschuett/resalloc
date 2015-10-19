@@ -1,11 +1,11 @@
 # Resalloc Client
 
-#### Installation 
+#### Installation
 - requires python 2.7
 - pip install -r requirements.txt
 
 #### Configuration
-This client requires you to change the server_ip variable on line 11 of client.py. You can see what IP it can be accessed at via the `docker ps` and the `docker-machine ip default` command for OSX users.
+The client should automatically configure itself to connect to the client. It will not work on windows. If you are running on windows you would have to manually specify the IP on line 18.
 
 #### Example Commands
 

@@ -15,6 +15,8 @@ def main():
     if platform.system() == "Darwin":
         server_ip = os.popen('docker-machine ip default').read().rstrip()
     server_ip = server_ip + ":8080"
+    # Uncomment line to use pre configured external server
+    # server_ip = "52.89.15.147:8080"
     command = CompressCommand(server_ip)
     command.run()
 

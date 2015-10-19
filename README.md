@@ -20,7 +20,7 @@ resource allocation with docker
     - `sudo usermod -aG docker yourusername`
     - `sudo su - yourusername` or log out and back into your user.
 2. `pip install docker-compose` or `sudo pip install docker-compose` depending how python and pip are installed on your machine.
-3. run `make test` or `sudo make test` if you run into issues with connecting to the docker socket on Ubuntu. This will build your entire environment inside a container and make it available at port 8080.
+3. run `make test` or `sudo make test` if you run into issues with connecting to the docker socket on Ubuntu. This will build your entire environment inside a container and make it available at port 8080. It will hang at the end giving you a way to see any stderr or stdout that occurs from commands being run against the server. You can hit Ctrl+C to stop this and the server will keep running.
 4. Configure the client.
   - OSX
     - `docker-machine ip default`
