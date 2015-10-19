@@ -1,5 +1,10 @@
 # resalloc
-resource allocation with docker
+
+ Resalloc is resource allocation and resource allocation management software. It uses a master/slave setup where the master keeps a record of each slave and it's location on the network. The master does not lease any of its resources so at least one slave is required in order to start creating leases. Slave creation requires that docker is setup on the machine and the resources/setup.sh script contains all commands that must be run to properly configure a slave server. After the slave has been properly setup you can add it to the master by issuing the `python client.py machine create <machine_name> <username> <ip>` command.
+
+In order to run any commands against the master node, you must first be registered and logged in which will provide you with an OAuth token on login. Resalloc allows you to create "resources" which define the type of image you can start with the "lease" command. Resources are defined using native [Dockerfile](https://docs.docker.com/reference/builder/) syntax the most basic being "FROM busybox". This allows you to lease a [busybox](https://hub.docker.com/_/busybox/) image. Something more familiar may be ubuntu, which you could create a resource for using "FROM ubuntu \nRUN apt-get update \nRUN apt-get install ping". Ping is needed since the containers needs a process running or it will stop and running `ping 8.8.8.8` is an easy hack to allow for the container to act closer to a VM that is always running. A more polished system would require people to write Dockerfiles or bash scripts that specify the process they would like to carry out and report back to them when the task is completed; eliminating the need for a user to lease specific machines.
+
+Once you have made the proper resources available for use to your users you can use the `python client.py lease create <resource> <lease_name>` command to start a lease and `python client.py lease delete <lease_name>` to remove it when you are done.
 
 #### Setup
 
@@ -21,13 +26,9 @@ resource allocation with docker
     - `sudo su - yourusername` or log out and back into your user.
 2. `pip install docker-compose` or `sudo pip install docker-compose` depending how python and pip are installed on your machine.
 3. run `make test` or `sudo make test` if you run into issues with connecting to the docker socket on Ubuntu. This will build your entire environment inside a container and make it available at port 8080. It will hang at the end giving you a way to see any stderr or stdout that occurs from commands being run against the server. You can hit Ctrl+C to stop this and the server will keep running.
-4. Configure the client.
-  - OSX
-    - `docker-machine ip default`
-      - this is the IP that you should place on line 11 for client.py to use.
-  - Ubuntu
-    - run `sudo docker ps` and use the IP and PORT that is listed under PORTS
-      - this is the IP that you should place on line 11 for client.py to use.
+4. Create slaves (optional)
+  - If you do not want to use the slave machines I have created you can create your own by starting up a ubuntu:14.04 machine that the master has access to.
+  -
 4. Initial Setup
   - from the client directory run the following commands
   - `pip install -r requirements.txt`
@@ -60,11 +61,11 @@ resource allocation with docker
 
 
 
-#### Helpful
+##### Helpful
 
 - `docker -H 0.0.0.0:5555 rm -f $(docker -H 0.0.0.0:5555 ps -a -q)` will clean out your remote docker server of all containers. Useful for when you are testing and delete may have not actually removed the container.
 
-#### Test Plan
+##### Test Plan
 
 This test plan is a manual one right now but does a decent job at ensuring any changes that you made did not break something. This could easily be moved into an automated test in the future using the go http client.
 
