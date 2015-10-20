@@ -12,6 +12,8 @@ def main():
     # the server on. likely localhost for linux.
     # auto detect and try to configure the port to use
     server_ip = "0.0.0.0"
+    # If docker-machine is not running this will output
+    # host is not running to your terminal
     if platform.system() == "Darwin":
         server_ip = os.popen('docker-machine ip default').read().rstrip()
     server_ip = server_ip + ":8080"
