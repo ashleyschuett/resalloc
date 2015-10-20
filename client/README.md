@@ -5,7 +5,7 @@
 - pip install -r requirements.txt
 
 #### Configuration
-The client should automatically configure itself to connect to the client. It will not work on windows. If you are running on windows you would have to manually specify the IP on line 18.
+The client should automatically configure itself to connect to the master server. It will not work on windows. If you are running on windows you would have to manually specify the IP on line 19.
 
 #### Example Commands
 
@@ -31,4 +31,4 @@ The client should automatically configure itself to connect to the client. It wi
 
 #### Bad Things
 - This should be made using the python setup tools package so it can be installed via pip.
-- The ssh connection just makes a call to the os... Sorry windows users. This should use a native python implementation to make it more portable
+- The ssh connection just makes a call to the os... Sorry windows users. This should use a native python implementation to make it more portable.
